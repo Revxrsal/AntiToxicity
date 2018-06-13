@@ -1,0 +1,16 @@
+[
+{
+  "modid": "antitoxicity",
+  "name": "Anti-Toxicity",
+  "description": "A mod which closes the chat box when any swear is entered, in order to reduce toxicity.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Reflxction"],
+  "credits": "Reflxction",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
