@@ -10,5 +10,8 @@ All it does is simply force-close your chat box when any swear word (or commonly
 ## Downloads:
 * [1.0 - First release](https://github.com/ReflxctionDev/AntiToxicity/releases/download/v1.0/AntiToxicity-v1.0.jar)
 
+## Installation
+* Simply drag the **AutoToxicity-v1.0.jar** to your **.minecraft/mods** directory and it should be loaded into your game.
+
 ## Source code
 [View project on GitHub](https://github.com/ReflxctionDev/AntiToxicity/)
