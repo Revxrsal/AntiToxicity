@@ -40,7 +40,7 @@ public class RenderListener extends Gui {
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.type != RenderGameOverlayEvent.ElementType.ARMOR) {
             if (KeyListener.startRendering()) {
-                if(regenerateText) {
+                if (regenerateText) {
                     Random random = new Random();
                     i = random.nextInt(wittyComments.length - 1);
                     c = randomColor();
@@ -53,6 +53,7 @@ public class RenderListener extends Gui {
                     }, 4000);
                 }
                 drawAlert(wittyComments[i], c);
+
             }
         }
     }
@@ -82,6 +83,7 @@ public class RenderListener extends Gui {
 
     /**
      * Generates a random color
+     *
      * @return A random color
      */
     private Color randomColor() {

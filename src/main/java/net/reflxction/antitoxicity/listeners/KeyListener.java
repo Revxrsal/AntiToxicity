@@ -22,6 +22,7 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.reflxction.antitoxicity.AntiToxicity;
 import net.reflxction.antitoxicity.utils.ReflectUtils;
 import net.reflxction.antitoxicity.utils.WordsList;
 
@@ -37,19 +38,21 @@ public class KeyListener extends WordsList {
 
     @SubscribeEvent
     public void onTick(TickEvent event) {
-        // Checking if the chat gui is opened
-        if (FMLClientHandler.instance().isGUIOpen(GuiChat.class)) {
-            // Get the text field
-            GuiTextField field = ReflectUtils.getMainTextField();
-            if (check(field)) {
-                Minecraft.getMinecraft().displayGuiScreen(null);
-                render = true;
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        render = false;
-                    }
-                }, 3500);
+        if (AntiToxicity.isEnabled()) {
+            // Checking if the chat gui is opened
+            if (FMLClientHandler.instance().isGUIOpen(GuiChat.class)) {
+                // Get the text field
+                GuiTextField field = ReflectUtils.getMainTextField();
+                if (check(field)) {
+                    Minecraft.getMinecraft().displayGuiScreen(null);
+                    render = true;
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            render = false;
+                        }
+                    }, 3500);
+                }
             }
         }
     }

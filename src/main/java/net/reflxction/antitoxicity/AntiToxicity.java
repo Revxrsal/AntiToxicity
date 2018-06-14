@@ -32,7 +32,7 @@ public class AntiToxicity {
         config = new Configuration(new File("config/anti-toxicity.cfg"));
     }
 
-    public boolean enabled = true;
+    public static boolean enabled = true;
 
     /**
      * Initialize variables here
@@ -62,7 +62,7 @@ public class AntiToxicity {
     }
 
 
-    public boolean isEnabled() {
+    public static boolean isEnabled() {
         return enabled;
     }
 
