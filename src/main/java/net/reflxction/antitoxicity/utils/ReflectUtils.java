@@ -18,7 +18,6 @@ package net.reflxction.antitoxicity.utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.lang.reflect.Field;
 
@@ -34,36 +33,22 @@ public class ReflectUtils {
      */
     public static GuiTextField getMainTextField() {
         try {
-            GuiChat chatGUI = ((GuiChat) Minecraft.getMinecraft().currentScreen);
-            Class guiClass = chatGUI.getClass();
-            Field fieldText = getField(guiClass, "inputField");
+            // Declaration so we can use it in multiple try/catch blocks
+            Field fieldText;
+            try {
+                // Try to use the obfuscated name for the input field
+                fieldText = GuiChat.class.getDeclaredField("field_146415_a");
+            } catch (NoSuchFieldException e) {
+                // Obfuscated name wasn't found, so try the de-obfuscated name
+                fieldText = GuiChat.class.getDeclaredField("inputField");
+            }
             fieldText.setAccessible(true);
-            return (GuiTextField) ReflectionHelper.findField(GuiChat.class, "inputField", "field_146409_v").get(chatGUI);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
+            return ((GuiTextField) fieldText.get(Minecraft.getMinecraft().currentScreen));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
+        } catch (ClassCastException ignored) {
+            return null;
         }
         return null;
-    }
-
-    /**
-     * A method which uses reflection, to return a Field with an object from that class
-     *
-     * @param clazz     Class to get value from
-     * @param fieldName Name of the field in the class
-     * @return Field with the given name
-     * @throws NoSuchFieldException If the field wasn't found
-     */
-    private static Field getField(Class clazz, String fieldName)
-            throws NoSuchFieldException {
-        try {
-            return clazz.getDeclaredField(fieldName);
-        } catch (NoSuchFieldException e) {
-            Class superClass = clazz.getSuperclass();
-            if (superClass == null) {
-                throw e;
-            } else {
-                return getField(superClass, fieldName);
-            }
-        }
     }
 }
