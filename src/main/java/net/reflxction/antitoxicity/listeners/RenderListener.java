@@ -38,7 +38,7 @@ public class RenderListener extends Gui {
 
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if (event.type != RenderGameOverlayEvent.ElementType.ARMOR) {
+        if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
             if (KeyListener.startRendering()) {
                 if (regenerateText) {
                     Random random = new Random();
