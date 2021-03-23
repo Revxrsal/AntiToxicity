@@ -76,6 +76,9 @@ public class RenderListener extends Gui {
             "You sure you need to use that word?",
             "Would be much better if you hadn't wrote this...",
             "Calm yourself, it's a block game!",
+            "You should take a break.",
+            "Touch some grass.",
+            "Thats what she said".
             "Wouldn't it be a better idea not to say anything?",
             "No u"
     };
